@@ -55,7 +55,7 @@
 		 //get all the lines without the header in the first line  
 			 var otherLines = dataContentString.Skip(1);  
 				 //declare variables for our conters  
-			 int number1 = 0, numberOfItemsSold = 0;  
+			 int numberOfSales = 0, numberOfItemsSold = 0;  
 			 double averageAmountOfBasket = 0.0, averageItemPriceSold = 0.0, totalSales = 0;  
 			 HashSet<string> clients = new HashSet<string>();  
 			 DateTime last = DateTime.MinValue;  
@@ -63,18 +63,18 @@
 			 foreach (var line in otherLines)  
 			 { //get the cell values for the line  
 	 			var cells = line.Split(',');  
-	 			number1++;//increment the total of sales  
+	 			numberOfSales++;//increment the total of sales  
 	 			//to count the number of clients, we put only distinct names in a hashset //then we'll count the number of entries if (!clients.Contains(cells[1])) clients.Add(cells[1]);  
 	 			numberOfItemsSold += int.Parse(cells[2]);//we sum the total of items sold here  
 	 			totalSales += double.Parse(cells[3]);//we sum the amount of each sell  
 	 			//we compare the current cell date with the stored one and pick the higher last = DateTime.Parse(cells[4]) > last ? DateTime.Parse(cells[4]) : last;  
 			 } 
 			 //we compute the average basket amount per sale  
-			 averageAmountOfBasket = Math.Round(totalSales / number1,2);  
+			 averageAmountOfBasket = Math.Round(totalSales / numberOfSales,2);  
 			 //we compute the average item price sold  
 			 averageItemPriceSold = Math.Round(totalSales / numberOfItemsSold,2);  
 			 Console.WriteLine($"+{new String('-',45)}+");
-			 Console.WriteLine($"| {" Number of sales".PadLeft(30)} | {number1.ToString().PadLeft(10)} |");
+			 Console.WriteLine($"| {" Number of sales".PadLeft(30)} | {numberOfSales.ToString().PadLeft(10)} |");
 			 Console.WriteLine($"| {" Number of clients".PadLeft(30)} | {clients.Count.ToString().PadLeft(10)} |");
 			 Console.WriteLine($"| {" Total items sold".PadLeft(30)} | {numberOfItemsSold.ToString().PadLeft(10)} |");
 			 Console.WriteLine($"| {" Total sales amount".PadLeft(30)} | {Math.Round(totalSales,2).ToString().PadLeft(10)} |");

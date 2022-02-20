@@ -22,7 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\SalesReporter.Cli\SalesReporter.Cli.csproj" />
+      
       <ProjectReference Include="..\SalesReporter.Console\SalesReporter.Cli.csproj" />
     </ItemGroup>
     <Target Name="CopyCustomContent" AfterTargets="AfterBuild">
